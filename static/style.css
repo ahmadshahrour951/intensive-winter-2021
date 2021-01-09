@@ -1,0 +1,26 @@
+:root {
+  --primary: #a58855;
+}
+
+.badge-primary {
+  background-color: #a58855;
+  color: white
+}
+
+.text-primary {
+  color: #a58855 !important;
+}
+
+.btn-primary {
+  background-color: #a58855;
+  color: white;
+  border-color: #a58855;
+}
+
+html, body {
+    height: 100%;
+}
+
+.sticky-footer {
+  height: 56px;
+}

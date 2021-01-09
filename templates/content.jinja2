@@ -1,0 +1,9 @@
+<main style="height: calc(100% - 56px - 56px);">
+  <div class="container py-5" style="height: 100%;">
+    {% if page == "aspirations" %}
+      {% include "content_aspirations.jinja2" %}
+    {% else %}
+      {% include "content_actions.jinja2" %}
+    {% endif %}
+  </div>
+</main>
