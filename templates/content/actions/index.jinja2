@@ -1,11 +1,13 @@
 <div class="card" style="height: 74vh;">
   <div class="card-body" style="background-color: #a58855;">
   <div class="row h-100">
+      {# I create a 3 column section to display actions created in history #}
       <div class="col-3 h100" >
         <div class="card" style="height: 70vh; overflow-y: scroll;">
           <div class="card-body align-items-center">
             <div class="card-title">Actions</div>
             <hr>
+            {# This is a seperate row to display and add option #}
             <div class="row my-2 mx-0">
                 <div class="col px-0">
                   <a class="card hover btn btn-outline-primary " role="button" href="{{ url_for('actions_render') }}" style="text-decoration: none; height: 150px;"">
@@ -15,6 +17,7 @@
                   </a>
                 </div>
             </div>
+            {# Here the cards are being rendered with a href link to its designated detail page where the user can edit the data #}
             {% for card in main_data %}
             <div class="row my-2 mx-0">
                 <div class="col px-0">
@@ -31,28 +34,16 @@
           </div>
         </div>
       </div>
+      {# This column takes the remaining space from the width and it acts as the console for the user #}
       <div class="col">
         <div class="card h-100">
           <div class="card-body h-100">
             {% if is_detail %}
+            {# This will show the detail form #}
             {% include "content/actions/detail.jinja2" %}
             {% else %}
-            <form action="/actions" method='post'>
-              <input type="hidden" name="_method" value="post">
-              <div class="mb-3 form-group">
-                <label for="action_name">Name:</label>
-                <input type="text" name="name" id="action_name"  class="form-control">
-              </div>
-              <div class="mb-3 form-group">
-                <label for="description">Description:</label>
-                <textarea name="description" id="description" class="form-control" rows="13"></textarea>
-              </div>
-              
-              <div class="card-footer">
-                <input type="submit" value="Add" class="btn btn-primary float-right">
-              </div>
-              
-            </form>
+            {# This will show the add form #}
+            {% include "content/actions/add.jinja2" %}
             {% endif %}
           </div>
         </div>

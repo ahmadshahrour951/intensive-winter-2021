@@ -6,6 +6,8 @@
           </div>
           <div class="modal-body">
             <form action="/aspirations" method="post">
+            {# This is a typical post request form #}
+              {# You'll find the _method variable being defined here, this is to help the post route differentiate forms and conclude logic #}
               <input type="hidden" name="_method" value="post" />
               <div class="mb-3">
                 <label for="name" class="col-form-label">Name:</label>
@@ -15,7 +17,6 @@
                 <label for="description" class="col-form-label">Description:</label>
                 <textarea class="form-control" id="description" name="description"></textarea>
               </div>
-              {# <input type="submit" value="Submit" class="btn btn-primary"> #}
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                 <input type="submit" value="Add" name="add" class="btn btn-primary">

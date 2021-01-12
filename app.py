@@ -1,10 +1,10 @@
 import os
 from dotenv import load_dotenv
-import requests
 from flask import Flask, render_template, redirect, url_for, request, jsonify
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
+# Prepare env variables for database
 load_dotenv()
 MONGODB_USERNAME = os.getenv('MONGODB_USERNAME')
 MONGODB_PASSWORD = os.getenv('MONGODB_PASSWORD')
@@ -12,7 +12,7 @@ MONGODB_DBNAME = 'dev'
 
 app = Flask(__name__)
 
-
+# Start db connections
 app.config["MONGO_URI"] = f"mongodb+srv://{MONGODB_USERNAME}:{MONGODB_PASSWORD}@cluster0.l6db0.mongodb.net/{MONGODB_DBNAME}?retryWrites=true&w=majority"
 mongo = PyMongo(app)
 
@@ -20,12 +20,11 @@ mongo = PyMongo(app)
 def base_redirect():
     return redirect(url_for('aspirations_render'))
 
+# Aspirations routes
 @app.route('/aspirations', methods=['GET'])
 def aspirations_render():
+   # Fetch all the aspirations documents
     main_data = list(mongo.db.aspirations.find({})) or []
-    # main_data = []
-    print(list(mongo.db.dev.aspirations.find({})))
-
 
     for data in main_data:
       data['_id'] = str(data['_id'])
@@ -35,6 +34,8 @@ def aspirations_render():
 @app.route('/aspirations', methods=['POST', 'PATCH'])
 def aspirations_post():
   aspirations = mongo.db.aspirations
+
+  #hidden input method placed in the form to help differentiate the two methods
   http_method = request.form.get('_method')
 
   if  http_method == 'post':
@@ -55,24 +56,15 @@ def aspirations_post():
 
 @app.route('/aspirations/<id>', methods=['DELETE'])
 def aspirations_delete(id):
+  # this route acts like an api
   aspirations = mongo.db.aspirations
   aspirations.delete_one({'_id': ObjectId(id)})
   return jsonify(success=True)
 
-
-@app.route('/actions/<id>', methods=['GET'])
-def actions_detail_render(id):
-  main_data = list(db.actions.find({})) or []
-
-  for data in main_data:
-      data['_id'] = str(data['_id'])
-
-  detail_data = mongo.db.actions.find_one({'_id': ObjectId(id)})
-
-  return render_template('base.jinja2', page="actions", main_data=main_data, detail_data=detail_data, is_detail=True)
-
+# Actions routes
 @app.route('/actions', methods=['GET'])
 def actions_render():
+  #fetch all documents for actions
   main_data = list(mongo.db.actions.find({})) or []
 
   for data in main_data:
@@ -81,9 +73,23 @@ def actions_render():
   return render_template('base.jinja2', page="actions", main_data=main_data, is_detail=False)
 
 
+@app.route('/actions/<id>', methods=['GET'])
+def actions_detail_render(id):
+  main_data = list(mongo.db.actions.find({})) or []
+
+  for data in main_data:
+      data['_id'] = str(data['_id'])
+
+  #provide an extra variable for template disection
+  detail_data = mongo.db.actions.find_one({'_id': ObjectId(id)})
+
+  return render_template('base.jinja2', page="actions", main_data=main_data, detail_data=detail_data, is_detail=True)
+
 @app.route('/actions', methods=['POST', 'PATCH'])
 def actions_post():
   actions = mongo.db.actions
+
+  # this uses the same way as the aspirations route
   http_method = request.form.get('_method')
 
   if http_method == 'post':
@@ -104,6 +110,7 @@ def actions_post():
 
 @app.route('/actions/<id>', methods=['DELETE'])
 def actions_delete(id):
+  # this uses the same way as aspirations route
   actions = mongo.db.actions
   actions.delete_one({'_id': ObjectId(id)})
   return jsonify(success=True)

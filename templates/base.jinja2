@@ -1,8 +1,11 @@
+{# This is where all the html is derived from #}
 <!DOCTYPE html>
 <html lang="en" class="vh-100">
+  {# Each part of the html is split into modularlized webtemplate logic #}
   {% include "head.jinja2" %}
   <body class="vh-100">
     {% include "nav.jinja2" %}
+    {# This is where all the good stuff happens #}
     {% include "/content/index.jinja2" %}
     {% include "footer.jinja2" %}
     <script

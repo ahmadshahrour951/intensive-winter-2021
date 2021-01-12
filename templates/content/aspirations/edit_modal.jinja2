@@ -1,0 +1,27 @@
+<div class="modal fade" id="{{ 'modal_' ~ card._id }}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form action="/aspirations" method="post">
+          {# Send the method type to use PATCH, this is because forms dont allow http patch method. #}
+          <input type="hidden" name="_method" value="patch" />
+          {# I also send the id so that I can figure out which object to update in the database #}
+          <input type="hidden" name="_id" value="{{ card._id }}">
+          <div class="mb-3">
+            <label for="name" class="col-form-label">Name:</label>
+            <input type="text" id="name" name="name" value="{{ card.name }}" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="description" class="col-form-label">Description:</label>
+            <textarea class="form-control" id="description" name="description"  rows="13">{{ card.description }}</textarea>
+          </div>
+          <div class="modal-footer">
+            {# This button sends a request via ajax using JQuery, please refer to head.jinja2 #}
+            <button type="button" class="btn btn-secondary" id="test" value="{{ card._id }}">Delete</button>
+            <input type="submit" value="Save" name="save" class="btn btn-primary">
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

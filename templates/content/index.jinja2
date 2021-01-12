@@ -1,8 +1,12 @@
 <main style="min-height: calc(100% - 56px - 56px);">
   <div class="container py-5" style="height: 100%;">
+  {# I use jinja2 if logic to find the variable page passed #}
+  {# In a way this is helping routing which should eventually be changed #}
     {% if page == "aspirations" %}
+      {# use asipirations template #}
       {% include "/content/aspirations/index.jinja2" %}
     {% else %}
+      {# use actions template #}
       {% include "/content/actions/index.jinja2" %}
     {% endif %}
   </div>
