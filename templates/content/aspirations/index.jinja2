@@ -1,6 +1,15 @@
 <h2 class="w-50 mx-auto">What aspiring characteristics would you like to have? (it could be Couragous, Generous...)</h2>
 <h3 class="w-50 mx-auto">Define at least one<h3>
 <div class="row row-cols-1 row-cols-3 g-4 mt-4">
+  <div class="col" style="height: 150px;">
+    <!-- Button trigger modal -->
+    <button class="btn btn-outline-primary h-100 w-100 rounded-lg shadow" type="button" data-bs-toggle="modal" data-bs-target="#addModal">
+    Add One
+    </button>
+
+    <!-- Modal -->
+    {% include "/content/aspirations/add_modal.jinja2" %}
+  </div>
   {% for card in  main_data %}
       <div class="col" style="height: 150px;">
         <div class="card rounded-lg shadow h-100" data-bs-toggle="modal" data-bs-target="{{ '#modal_' ~ card._id }}">
@@ -8,6 +17,7 @@
                 <h5 class="card-title">
                     {{ card.name }}
                 </h5>
+                <hr>
                 <p class="card-text">
                     {{ card.description }}
                 </p>
@@ -39,13 +49,5 @@
         </div>
       </div>
   {% endfor %}
-  <div class="col" style="height: 150px;">
-    <!-- Button trigger modal -->
-    <button class="btn btn-outline-primary h-100 w-100 rounded-lg shadow" type="button" data-bs-toggle="modal" data-bs-target="#addModal">
-    Add One
-    </button>
 
-    <!-- Modal -->
-    {% include "/content/aspirations/add_modal.jinja2" %}
-  </div>
 </div>

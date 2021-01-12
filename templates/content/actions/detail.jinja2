@@ -1,0 +1,16 @@
+<form action="/actions" method='post' >
+  <input type="hidden" name="_method" value="patch">
+  <input type="hidden" name="_id" value="{{ detail_data._id }}">
+  <div class="mb-3 form-group">
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" value="{{ detail_data.name }}" class="form-control">
+  </div>
+  <div class="mb-3 form-group h-100">
+    <label for="description">Description:</label>
+    <textarea name="description" id="description" class="form-control" rows="13">{{ detail_data.description }}</textarea>
+  </div>
+  <div class="card-footer">
+    <button id="delete_action" value="{{ detail_data._id }}" class="btn btn-secondary float-right" >Delete</button>
+    <input type="submit" value="Save" class="btn btn-primary float-right">
+  </div>
+</form>
