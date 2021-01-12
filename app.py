@@ -8,7 +8,7 @@ from bson.objectid import ObjectId
 load_dotenv()
 MONGODB_USERNAME = os.getenv('MONGODB_USERNAME')
 MONGODB_PASSWORD = os.getenv('MONGODB_PASSWORD')
-MONGODB_DBNAME = os.getenv('MONGODB_DBNAME')
+MONGODB_DBNAME = 'dev'
 
 app = Flask(__name__)
 
