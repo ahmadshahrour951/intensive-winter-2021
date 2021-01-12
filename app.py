@@ -2,13 +2,18 @@ import requests
 from flask import Flask, render_template, redirect, url_for, request, jsonify
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+MONGODB_USERNAME = os.getenv('MONGODB_USERNAME')
+MONGODB_PASSWORD = os.getenv('MONGODB_PASSWORD')
+MONGODB_DBNAME = os.getenv('MONGODB_DBNAME')
 
 app = Flask(__name__)
-app.config["MONGO_URI"] = "mongodb://localhost:27017/finestSelfDev"
+
+app.config["MONGO_URI"] = f"mongodb+srv://{MONGODB_USERNAME}:{MONGODB_PASSWORD}@finestself.l6db0.mongodb.net/{MONGODB_DBNAME}?retryWrites=true&w=majority"
 mongo = PyMongo(app)
-
-
-
 
 @app.route('/')
 def base_redirect():
