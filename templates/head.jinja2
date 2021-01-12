@@ -48,9 +48,16 @@
             });
 
             $(document).ready(function() {
-              $( ".card.hover" ).hover(
+              $(".card.hover").hover(
+                function() {
+                  $(this).addClass('shadow-lg').css({'cursor': 'pointer', 'color': '#484848'})
+                }, function() {
+                $(this).removeClass('shadow-lg');
+              }
+              )
+              $(".card.hover.btn-outline-primary").hover(
               function() {
-                $(this).addClass('shadow-lg').css('cursor', 'pointer'); 
+                $(this).addClass('shadow-lg').css({'cursor': 'pointer', 'color': 'white'})
               }, function() {
                 $(this).removeClass('shadow-lg');
               }

@@ -12,13 +12,13 @@
   </div>
   {% for card in  main_data %}
       <div class="col" style="height: 150px;">
-        <div class="card rounded-lg shadow h-100" data-bs-toggle="modal" data-bs-target="{{ '#modal_' ~ card._id }}">
+        <div class="card hover rounded-lg shadow h-100" data-bs-toggle="modal" data-bs-target="{{ '#modal_' ~ card._id }}">
             <div class="card-body">
                 <h5 class="card-title">
                     {{ card.name }}
                 </h5>
                 <hr>
-                <p class="card-text">
+                <p class="card-text text-truncate">
                     {{ card.description }}
                 </p>
             </div>
@@ -33,11 +33,11 @@
                 <input type="hidden" name="_id" value="{{ card._id }}">
                 <div class="mb-3">
                   <label for="name" class="col-form-label">Name:</label>
-                  <input type="text" id="name" name="name" value="{{ card.name }}">
+                  <input type="text" id="name" name="name" value="{{ card.name }}" class="form-control">
                 </div>
                 <div class="mb-3">
                   <label for="description" class="col-form-label">Description:</label>
-                  <textarea class="form-control" id="description" name="description">{{ card.description }}</textarea>
+                  <textarea class="form-control" id="description" name="description"  rows="13">{{ card.description }}</textarea>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" id="test" value="{{ card._id }}">Delete</button>
