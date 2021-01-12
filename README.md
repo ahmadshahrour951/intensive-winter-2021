@@ -2,6 +2,10 @@
 
 The project is called FinestSelf. The objective is to allow a user to store and create aspirations and actions on a daily basis.
 
+Language: Python 3.8.5
+Framework: Flask 1.1.12
+Templating: Jinja2 2.11.2
+
 So two pages were created '/aspirations' and '/actions'. Each will have its own collection in mongodb.
 
 The aspirations page will handle display data via cards and manipulating data via modals, since the priority is to allow the user to see as many aspirations as possible in this route. While in the actions page, the priority lies in have space and a bit more freedom to write your daily actions, so space was priorized over the number of actions to display.
