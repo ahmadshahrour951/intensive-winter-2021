@@ -9,6 +9,7 @@ mongo = PyMongo(app)
 
 
 
+
 @app.route('/')
 def base_redirect():
     return redirect(url_for('aspirations_render'))
